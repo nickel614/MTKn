@@ -4,6 +4,7 @@ from models.class_base import Base
 
 __all__ = ['Specifications', 'Skills', 'Situations', 'Features', 'Flaws', 'Chars', 'Dices']
 
+
 # Характеристики
 class Specifications(Base):
     __table_args__ = {'extend_existing': True}
@@ -63,4 +64,3 @@ class Dices(Base):
 
     def __repr__(self):
         return f"Dices(name={self.name})"
-

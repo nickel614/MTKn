@@ -15,7 +15,7 @@ class SkillsInSituations(RelationsTables):
 
 # Снижение характеристики за счет изъяна
 class DowngradeCharacteristicDueToFlaws(RelationsTables):
-    id_skill = Column(Integer, ForeignKey(Skills.id), primary_key=True)
+    id_specification = Column(Integer, ForeignKey(Specifications.id), primary_key=True)
     id_flaw = Column(Integer, ForeignKey(Flaws.id), primary_key=True)
     downgrade = Column(Integer, ForeignKey(Dices.size), primary_key=True)
 
@@ -39,5 +39,34 @@ class RequiredSpecificationsForFeatures(RelationsTables):
     id_features = Column(Integer, ForeignKey(Features.id), primary_key=True)
     needed_dice = Column(Integer, ForeignKey(Dices.size), primary_key=True)
 
+
 # Прирост навыка за счет черты
-#class IncreaseSkillsDueToFeatures(Base)
+class IncreaseSkillsDueToFeatures(RelationsTables):
+    id_specification = Column(Integer, ForeignKey(Specifications.id), primary_key=True)
+    id_feature = Column(Integer, ForeignKey(Features.id), primary_key=True)
+    needed_dice = Column(Integer, ForeignKey(Dices.size), primary_key=True)
+
+
+# Навыки персонажа
+class CharsSkills(RelationsTables):
+    id_char = Column(Integer, ForeignKey(Chars.id), primary_key=True)
+    id_skill = Column(Integer, ForeignKey(Skills.id), primary_key=True)
+
+
+# Характеристики персонажа
+class CharsSpecifications(RelationsTables):
+    id_char = Column(Integer, ForeignKey(Chars.id), primary_key=True)
+    id_specification = Column(Integer, ForeignKey(Specifications.id), primary_key=True)
+
+
+# Черты персонажа
+class CharsFeatures(RelationsTables):
+    id_char = Column(Integer, ForeignKey(Chars.id), primary_key=True)
+    id_feature = Column(Integer, ForeignKey(Features.id), primary_key=True)
+
+
+# Изъяны персонажа
+class CharsFeatures(RelationsTables):
+    id_char = Column(Integer, ForeignKey(Chars.id), primary_key=True)
+    id_flaw = Column(Integer, ForeignKey(Flaws.id), primary_key=True)
+
